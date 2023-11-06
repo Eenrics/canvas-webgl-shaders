@@ -12,7 +12,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "canvas-sketch-cli": "^1.11.21"
+    "canvas-sketch-cli": "^1.11.21",
+    "canvas-sketch-util": "^1.10.0"
   },
   "dependencies": {
     "canvas-sketch": "^0.7.7"
