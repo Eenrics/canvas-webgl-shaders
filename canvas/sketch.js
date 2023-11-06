@@ -6,8 +6,17 @@ const settings = {
 
 const sketch = () => {
   return ({ context, width, height }) => {
-    context.fillStyle = 'white';
+    context.fillStyle = 'orange';
     context.fillRect(0, 0, width, height);
+
+    context.beginPath();
+    context.arc(width / 2, height / 2, 200, 0, Math.PI * 2, false);
+    context.fillStyle = 'red';
+    context.fill();
+
+    context.lineWidth = 40;
+    context.strokeStyle = 'blue';
+    context.stroke();
   };
 };
 
