@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "canvas-sketch sketch.js",
     "start": "canvas-sketch sketch.js",
     "start:new": "canvas-sketch sketch.js --new --open --force",
     "test": "echo \"Error: no test specified\" && exit 1"
