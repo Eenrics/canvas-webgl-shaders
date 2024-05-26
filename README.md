@@ -23,7 +23,7 @@ THREEJS
 - __material__: surface quality of a mesh.
     - _mesh-basic-material_ :- no lighting
     - _mesh-normal-material_ :- for debugging purpose
-    - _mesh-standard-material_ :- with light, shadding and shadows (more of real life) [smoth shadded, flat shadded]
+    - _mesh-standard-material/mesh-physical-material_ :- with light, shadding and shadows (more of real life) [smoth shadded, flat shadded]
 - __geometry__: the actual topology (sphere, box)
 - __mesh__: wrapper of material and geometry, (eg: creating one geometry, but reusing it using different mesh)
 - __scene__: meshes combined
