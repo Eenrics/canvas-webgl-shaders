@@ -14,6 +14,9 @@ canvas-sketch sketch.js
 
 # creating new canva and opening it in browser
 canvas-sketch sketch.js --new --open
+
+# creating new threejs canva for 3D
+canvas-sketch webgl.js --new --template=three
 ```
 
 THREEJS
