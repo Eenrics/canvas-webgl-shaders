@@ -23,3 +23,7 @@ THREEJS
     - _mesh-standard-material_ :- with light, shadding and shadows (more of real life) [smoth shadded, flat shadded]
 - __geometry__: the actual topology (sphere, box)
 - __mesh__: wrapper of material and geometry, (eg: creating one geometry, but reusing it using different mesh)
+- __scene__: meshes combined
+- __camera__: virtual way of looking at the world
+    - _perspective-camera_ :- we are seeing two point perspectives
+    - _orthographic-camera_ :- everthing looks flat and two dimentional
