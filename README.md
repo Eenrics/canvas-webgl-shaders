@@ -26,4 +26,5 @@ THREEJS
 - __scene__: meshes combined
 - __camera__: virtual way of looking at the world
     - _perspective-camera_ :- we are seeing two point perspectives
-    - _orthographic-camera_ :- everthing looks flat and two dimentional
+    - _orthographic-camera_ :- everthing looks flat and two dimentional (for 2D)
+- __animation__: 
