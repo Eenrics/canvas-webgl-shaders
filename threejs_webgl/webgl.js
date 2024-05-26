@@ -1,68 +1,69 @@
-// Ensure ThreeJS is in global scope for the 'examples/'
-global.THREE = require("three");
+global.THREE = require('three');
 
-// Include any additional ThreeJS examples below
-require("three/examples/js/controls/OrbitControls");
-
-const canvasSketch = require("canvas-sketch");
+const canvasSketch = require('canvas-sketch');
 
 const settings = {
-  // Make the loop animated
   animate: true,
+  dimensions: [ 1024, 1280 ],
   // Get a WebGL canvas rather than 2D
-  context: "webgl"
+  context: 'webgl',
+  // Turn on MSAA
+  attributes: { antialias: true }
 };
 
-const sketch = ({ context }) => {
+const sketch = ({ context, width, height }) => {
   // Create a renderer
   const renderer = new THREE.WebGLRenderer({
-    canvas: context.canvas
+    context
   });
 
   // WebGL background color
-  renderer.setClearColor("#000", 1);
+  renderer.setClearColor('hsl(0, 0%, 95%)', 1);
 
-  // Setup a camera
-  const camera = new THREE.PerspectiveCamera(50, 1, 0.01, 100);
-  camera.position.set(0, 0, -4);
+  // Setup a camera, we will update its settings on resize
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.01, 1000);
+  camera.position.set(2, 2, 2);
   camera.lookAt(new THREE.Vector3());
-
-  // Setup camera controller
-  const controls = new THREE.OrbitControls(camera, context.canvas);
 
   // Setup your scene
   const scene = new THREE.Scene();
 
-  // Setup a geometry
-  const geometry = new THREE.SphereGeometry(1, 32, 16);
+  // Re-use the same Geometry across all our cubes
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
 
-  // Setup a material
-  const material = new THREE.MeshBasicMaterial({
-    color: "red",
-    wireframe: true
-  });
+  // Basic "unlit" material with no depth
+  const material = new THREE.MeshNormalMaterial();
 
-  // Setup a mesh with geometry + material
+  // Create the mesh
   const mesh = new THREE.Mesh(geometry, material);
+
+  // Smaller cube
+  mesh.scale.setScalar(0.5);
+
+  // Then add the group to the scene
   scene.add(mesh);
 
   // draw each frame
   return {
     // Handle resize events here
-    resize({ pixelRatio, viewportWidth, viewportHeight }) {
+    resize ({ pixelRatio, viewportWidth, viewportHeight }) {
       renderer.setPixelRatio(pixelRatio);
-      renderer.setSize(viewportWidth, viewportHeight, false);
+      renderer.setSize(viewportWidth, viewportHeight);
+
       camera.aspect = viewportWidth / viewportHeight;
+
+      // Update camera properties
       camera.updateProjectionMatrix();
     },
-    // Update & render your scene here
-    render({ time }) {
-      controls.update();
+    // And render events here
+    render ({ time }) {
+      // Rotate mesh
+      mesh.rotation.y = time * 0.25;
+      // Draw scene with our camera
       renderer.render(scene, camera);
     },
-    // Dispose of events & renderer for cleaner hot-reloading
-    unload() {
-      controls.dispose();
+    // Dispose of WebGL context (optional)
+    unload () {
       renderer.dispose();
     }
   };
