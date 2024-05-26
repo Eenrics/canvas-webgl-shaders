@@ -1,0 +1,13 @@
+{
+  "name": "threejs_webgl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webgl.js",
+  "scripts": {
+    "dev": "canvas-sketch webgl.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
