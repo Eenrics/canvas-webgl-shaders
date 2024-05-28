@@ -23,14 +23,10 @@ const frag = glsl(/* glsl */`
 
     vec2 center = vUv - 0.5;
     center.x *= aspect;
-
     float dist = length(center);
 
-    // float alpha = step(dist, 0.25);
-    float alpha = smoothstep(0.2505, 0.25, dist);
-
     vec3 color = mix(colorA, colorB, vUv.x);
-    gl_FragColor = vec4(color, alpha);
+    gl_FragColor = vec4(color, dist > 0.25 ? 0.0 : 1.0);
   }
 `);
 
