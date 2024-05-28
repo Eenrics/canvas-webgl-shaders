@@ -26,6 +26,9 @@ canvas-sketch-mp4 tmp/
 
 # creating new shader canva 
 canvas-sketch shader.js --new --template=shader
+
+# run canvas sketch with hot reload 
+canvas-sketch shader.js --hot
   
 ```
 
