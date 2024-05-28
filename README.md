@@ -23,6 +23,10 @@ canvas-sketch webgl.js --output=tmp/
 
 # create a video from picture with ffpng
 canvas-sketch-mp4 tmp/
+
+# creating new shader canva 
+canvas-sketch shader.js --new --template=shader
+  
 ```
 
 THREEJS
@@ -61,3 +65,11 @@ THREEJS
     - there are two types of varibles in shadder :- 
         1. _varying_: coordinate, number or a value that is coming from webgl. It is called varying because as it moves across the surface, it is varying.
         2. _uniform_: it is called uniform because its value is uniform across all pixels
+    - two vscode extension useful for syntax highlight for shaders :-
+        - shader languages support
+        - comment tagged template
+    - FragColor is a rgba value
+    - vec2 -> x, y
+    - vec3 -> x, y, z
+    - vec4 -> x, y, z, w
+    - notes: 1.0 is white and 0.0 is black
