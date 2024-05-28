@@ -1,8 +1,6 @@
 global.THREE = require('three');
 const random = require('canvas-sketch-util/random')
 const palettes = require('nice-color-palettes')
-const eases = require('eases')
-const BazierEasing = require('bezier-easing')
 
 const canvasSketch = require('canvas-sketch');
 
@@ -69,7 +67,6 @@ const light = new THREE.DirectionalLight('white', 1)
 light.position.set(0, 0, 4)
 scene.add(light)
 
-const easeFn = BazierEasing(.02,1.7,.42,-0.14)
   // draw each frame
   return {
     // Handle resize events here
@@ -101,9 +98,7 @@ const easeFn = BazierEasing(.02,1.7,.42,-0.14)
     },
     // And render events here
     render ({ playhead }) {
-      const t = Math.sin(playhead * Math.PI)
-      // scene.rotation.z = easeFn(t)
-      scene.rotation.z = eases.expoInOut(t)
+      scene.rotation.z = playhead * Math.PI * 2
       renderer.render(scene, camera);
     },
 
