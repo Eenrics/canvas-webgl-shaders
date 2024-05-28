@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "shader.js",
   "scripts": {
-    "dev": "canvas-sketch shader.js"
+    "dev": "canvas-sketch shader.js",
+    "dev-hot": "canvas-sketch shader.js --hot"
   },
   "keywords": [],
   "author": "",
