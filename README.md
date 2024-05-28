@@ -57,3 +57,7 @@ THREEJS
     ```
     > `highp`: high precision,
     > `vec2`: 2 dimentional vector or coordinate
+    - shdder runs on a pixel but does not know anything about the next pixel
+    - there are two types of varibles in shadder :- 
+        1. _varying_: coordinate, number or a value that is coming from webgl. It is called varying because as it moves across the surface, it is varying.
+        2. _uniform_: it is called uniform because its value is uniform across all pixels
