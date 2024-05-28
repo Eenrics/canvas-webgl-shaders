@@ -6,9 +6,7 @@ const canvasSketch = require('canvas-sketch');
 
 const settings = {
   animate: true,
-  dimensions: [ 512, 512 ],
-  fps: 24,
-  duration: 4,
+
   // Get a WebGL canvas rather than 2D
   context: 'webgl',
   // Turn on MSAA
@@ -97,8 +95,10 @@ scene.add(light)
       camera.updateProjectionMatrix();
     },
     // And render events here
-    render ({ playhead }) {
-      scene.rotation.z = playhead * Math.PI * 2
+    render ({ time }) {
+      scene.rotation.x = time * 0.25
+      scene.rotation.y = time * 0.25
+      scene.rotation.z = time * 0.25
       renderer.render(scene, camera);
     },
 
