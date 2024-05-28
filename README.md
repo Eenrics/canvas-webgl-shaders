@@ -37,4 +37,23 @@ THREEJS
     - _perspective-camera_ :- we are seeing two point perspectives
     - _orthographic-camera_ :- everthing looks flat and two dimentional (for 2D)
 - __animation__: 
-- __shadder__: small program that is meant to do a single task really well. _(It is made using glsl programming language)_
+- __shadder__: small program that is meant to do a single task really well. _(It is made using glsl programming language [shadder language for webgl])_
+    - example :-
+    ```glsl
+    // Default floating point precision
+    precision highp float;
+
+    //  Inputs
+    varying vec2 vUv;
+
+    // Variables from JavaScript
+    uniform float time;
+
+    // Main function
+    void main () {
+        // Output color
+        gl_FragColor = vec4(1.0);
+    }
+    ```
+    > `highp`: high precision,
+    > `vec2`: 2 dimentional vector or coordinate
