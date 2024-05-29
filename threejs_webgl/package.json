@@ -1,7 +1,8 @@
 {
     "scripts": {
         "dev": "canvas-sketch webgl.js",
-        "dev-tmp": "canvas-sketch webgl.js --output=tmp"
+        "dev-tmp": "canvas-sketch webgl.js --output=tmp",
+        "dev-hot": "canvas-sketch webgl.js --hot"
     },
     "dependencies": {
         "bezier-easing": "^2.1.0",

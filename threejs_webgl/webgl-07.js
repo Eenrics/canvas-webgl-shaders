@@ -34,22 +34,6 @@ const sketch = ({ context, width, height }) => {
 
   const palette = random.pick(palettes)
 
-  const fragmentShader = /* glsl */`
-    varying vec2 vUv;
-    void main () {
-      vec3 color = vec3(1.0);
-      gl_FragColor = vec4(vec3(vUv.x), 1.0);
-    }
-  `;
-
-const vertexShader = /* glsl */`
-  varying vec2 vUv;
-  void main () {
-    vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position.xyz, 1.0);
-  }
-`;
-
   // Re-use the same Geometry across all our cubes
   const geometry = new THREE.BoxGeometry(1, 1, 1);
   // Basic "unlit" material with no depth
@@ -57,9 +41,7 @@ const vertexShader = /* glsl */`
 for (let i = 0; i < 40; i++) {
   const mesh = new THREE.Mesh(
     geometry, 
-    new THREE.ShaderMaterial({
-      fragmentShader,
-      vertexShader,
+    new THREE.MeshStandardMaterial({
       color: random.pick(palette)
     })
   );
