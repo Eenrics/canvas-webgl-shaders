@@ -30,6 +30,9 @@ canvas-sketch shader.js --new --template=shader
 # run canvas sketch with hot reload 
 canvas-sketch shader.js --hot
   
+# create new penplotter canvas sketch
+canvas-sketch penplotter.js --new --template=penplot
+  
 ```
 
 THREEJS
