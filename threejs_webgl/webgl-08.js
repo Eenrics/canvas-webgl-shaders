@@ -3,7 +3,6 @@ const random = require('canvas-sketch-util/random')
 const palettes = require('nice-color-palettes')
 const eases = require('eases')
 const BazierEasing = require('bezier-easing')
-const glsl = require('glslify');
 
 const canvasSketch = require('canvas-sketch');
 
@@ -37,42 +36,31 @@ const sketch = ({ context, width, height }) => {
 
   const fragmentShader = /* glsl */`
     varying vec2 vUv;
-    uniform vec3 color;
     void main () {
-      gl_FragColor = vec4(vec3(color * vUv.x), 1.0);
+      vec3 color = vec3(1.0);
+      gl_FragColor = vec4(vec3(vUv.x), 1.0);
     }
   `;
 
-const vertexShader = glsl(/* glsl */`
+const vertexShader = /* glsl */`
   varying vec2 vUv;
-
-  uniform float time;
-
-  #pragma glslify: noise = require('glsl-noise/simplex/4d');
-
   void main () {
     vUv = uv;
-    vec3 pos = position.xyz;
-    pos += normal * noise(vec4(position.xyz, time));
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position.xyz, 1.0);
   }
-`);
+`;
 
   // Re-use the same Geometry across all our cubes
   const geometry = new THREE.BoxGeometry(1, 1, 1);
   // Basic "unlit" material with no depth
 
-  const meshes = []
 for (let i = 0; i < 40; i++) {
   const mesh = new THREE.Mesh(
     geometry, 
     new THREE.ShaderMaterial({
       fragmentShader,
       vertexShader,
-      uniforms: {
-        color: {value: new THREE.Color(random.pick(palette))},
-        time: {value: 0}
-      },
+      color: random.pick(palette)
     })
   );
 
@@ -91,7 +79,6 @@ for (let i = 0; i < 40; i++) {
 
   // Then add the group to the scene
   scene.add(mesh);
-  meshes.push(mesh)
 }
 
 scene.add(new THREE.AmbientLight('hsl(0, 0%, 20%)'))
@@ -131,13 +118,10 @@ const easeFn = BazierEasing(.02,1.7,.42,-0.14)
       camera.updateProjectionMatrix();
     },
     // And render events here
-    render ({ playhead, time }) {
+    render ({ playhead }) {
       const t = Math.sin(playhead * Math.PI)
       // scene.rotation.z = easeFn(t)
       scene.rotation.z = eases.expoInOut(t)
-      meshes.forEach(mesh => {
-        mesh.material.uniforms.time.value = time
-      })
       renderer.render(scene, camera);
     },
 

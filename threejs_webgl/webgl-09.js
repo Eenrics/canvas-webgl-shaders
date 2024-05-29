@@ -3,7 +3,6 @@ const random = require('canvas-sketch-util/random')
 const palettes = require('nice-color-palettes')
 const eases = require('eases')
 const BazierEasing = require('bezier-easing')
-const glsl = require('glslify');
 
 const canvasSketch = require('canvas-sketch');
 
@@ -43,20 +42,15 @@ const sketch = ({ context, width, height }) => {
     }
   `;
 
-const vertexShader = glsl(/* glsl */`
+const vertexShader = /* glsl */`
   varying vec2 vUv;
-
   uniform float time;
-
-  #pragma glslify: noise = require('glsl-noise/simplex/4d');
-
   void main () {
     vUv = uv;
-    vec3 pos = position.xyz;
-    pos += normal * noise(vec4(position.xyz, time));
+    vec3 pos = position.xyz * sin(time);
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
   }
-`);
+`;
 
   // Re-use the same Geometry across all our cubes
   const geometry = new THREE.BoxGeometry(1, 1, 1);
