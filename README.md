@@ -37,6 +37,8 @@ THREEJS
     - _mesh-basic-material_ :- no lighting
     - _mesh-normal-material_ :- for debugging purpose
     - _mesh-standard-material/mesh-physical-material_ :- with light, shadding and shadows (more of real life) [smoth shadded, flat shadded]
+    - _shader-material_ :- you don't have to write precision etc.. threejs do it for you.
+    - _raw-shader-material_ :- if you don't want threejs shader and implement the shader from scratch.
 - __geometry__: the actual topology (sphere, box)
 - __mesh__: wrapper of material and geometry, (eg: creating one geometry, but reusing it using different mesh)
 - __scene__: meshes combined
@@ -66,8 +68,8 @@ THREEJS
     > `vec2`: 2 dimentional vector or coordinate
     - shdder runs on a pixel but does not know anything about the next pixel
     - there are two types of varibles in shadder :- 
-        1. _varying_: coordinate, number or a value that is coming from webgl. It is called varying because as it moves across the surface, it is varying.
-        2. _uniform_: it is called uniform because its value is uniform across all pixels
+        1. _varying_: coordinate, number or a value that is coming from webgl. It is called varying because as it moves across the surface, it is varying. They are set by vertex shader.
+        2. _uniform_: it is called uniform because its value is uniform across all pixels. They are set by javascript.
     - two vscode extension useful for syntax highlight for shaders :-
         - shader languages support
         - comment tagged template
